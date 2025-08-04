@@ -1,11 +1,12 @@
 import json
-import pickle
 import re
 import numpy as np
 import tensorflow as tf
 from autocorrect import autocorrect
 from transformers import AlbertTokenizer, TFAlbertForSequenceClassification
 from word2number import w2n
+import fickling
+
 # Load responses from JSON
 with open("responses.json", "r") as f:
     responses = json.load(f)
@@ -25,7 +26,7 @@ class MedicareHandler:
 
         # Load label encoder
         with open(label_encoder_path, 'rb') as file:
-            self.label_encoder = pickle.load(file)
+            self.label_encoder = fickling.load(file)
 
     def reset_state(self, session_id):
         """Initialize or reset the state for a given session"""
